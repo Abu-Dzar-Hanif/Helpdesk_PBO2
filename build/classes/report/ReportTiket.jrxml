@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="tgl1" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="tgl2" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM tiket inner JOIN karyawan ON karyawan.kd_karyawan=tiket.kd_karyawan WHERE status='done' AND tgl_buat BETWEEN $P{tgl1} AND $P{tgl2}]]>
+	</queryString>
+	<field name="kd_tiket" class="java.lang.String"/>
+	<field name="kd_karyawan" class="java.lang.String"/>
+	<field name="keluhan" class="java.lang.String"/>
+	<field name="tgl_buat" class="java.sql.Date"/>
+	<field name="tgl_selesai" class="java.sql.Date"/>
+	<field name="status" class="java.lang.String"/>
+	<field name="petugas" class="java.lang.String"/>
+	<field name="nama" class="java.lang.String"/>
+	<field name="gender" class="java.lang.String"/>
+	<field name="kd_divisi" class="java.lang.String"/>
+	<group name="kd_tiket">
+		<groupExpression><![CDATA[$F{kd_tiket}]]></groupExpression>
+	</group>
+	<group name="kd_karyawan">
+		<groupExpression><![CDATA[$F{kd_karyawan}]]></groupExpression>
+	</group>
+	<group name="tgl_buat">
+		<groupExpression><![CDATA[$F{tgl_buat}]]></groupExpression>
+	</group>
+	<group name="status">
+		<groupExpression><![CDATA[$F{status}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="63" splitType="Stretch">
+			<staticText>
+				<reportElement x="211" y="0" width="147" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data Laporan Tiket]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="184" y="30" width="41" height="20"/>
+				<textElement/>
+				<text><![CDATA[Periode]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="225" y="30" width="64" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tgl1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="295" y="30" width="24" height="20"/>
+				<textElement/>
+				<text><![CDATA[s/d]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="325" y="30" width="62" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tgl2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="84" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="83" height="20"/>
+				<textElement/>
+				<text><![CDATA[Dicetak tanggal]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[ID Tiket]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="111" y="0" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Pemohon]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="223" y="0" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Tanggal Buat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="336" y="0" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Tanggal selesai]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="0" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Petugas]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="55" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{kd_tiket}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="55" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="223" y="55" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{tgl_buat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="336" y="55" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{tgl_selesai}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="55" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{petugas}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
